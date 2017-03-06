@@ -1,0 +1,15 @@
+---
+author: "Neli Noykova"
+title: "IODS course project: final assignment"
+output:
+  html_document:
+    theme: cosmo
+    toc: true
+    toc_depth: 2
+    fig_caption: true
+    fig_width: 6
+    fig_height: 4
+    code_folding: hide
+---
+
+This is a first version of this project
