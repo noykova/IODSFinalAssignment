@@ -13,3 +13,10 @@ output:
 ---
 
 This is a first version of this project
+
+***
+  
+```{r child = "FinalAssignment.Rmd"}
+```
+  
+***
