@@ -7,5 +7,5 @@ The final assignment for the course Introduction to Open Data Science is describ
 
 Here is the link to my course diary:
 
-https://github.com/noykova/IODSFinalAssignment
+https://noykova.github.io/IODSFinalAssignment
 
