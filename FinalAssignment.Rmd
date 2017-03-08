@@ -1,5 +1,78 @@
 
+# 6. Long healthy life and good education as measures for human development of given country: linear regression modeling approach.  
+
+## Introduction
+
+In our commercial world when unfortunately earning money becomes not just the main goal, but also meaning of more and more people's lifes, is natural to assume the economical growth as only measure of the development of a country. In order to avoid such misunderstanding, the Humnan Development Index (HDI) was created under the United Nations Development Programme. 
+In this summary measure three main components are measured and involved: long and healthy life, access to knowledge, and only as a third componet - the gross national income as a measure for decent standard of living. The income is involved as a logarithmic function since too high income does not affect much the human development capabilities.  
+
+
+The main goal of this work is to investigate how the long and healthy life depends on education and gross income related variables. In order to justify the results some variables related to gender inequality are added. 
+we also investigate how the education as output variable depends on the other two groups of variables. 
+
+##6.2.The data 
+
+The full **human** data from the United Nations Development Programme are originally published [here](http://hdr.undp.org/en/content/human-development-index-hdi), and the detailed description about all calculated indexes is provided   [here](http://hdr.undp.org/sites/default/files/hdr2015_technical_notes.pdf).
+Part of these data sests have been used in [Exercise 5](https://noykova.github.io/IODS-project/#dimensionality-reduction-technique). 
+
+In this work we use only variables, needed for calculation of the human development index (HDI), and gender inequality index (GII). 
+
+The wrangling includes the following changes: 
+
+1. As in the previous Exercise 5, here we also join both groups of data on "country" column using inner join. 
+
+2. One new column **FRHI** is added to "Gender inequality" data. The Female Reproductive Health Index **FRHI** is calculated as average value of Maternal mortaity rate and Adolescent birth rate. 
+
+3. Next "Gender inequality" and "Human development" datas are joined using the variable Country as the identifier. 
+
+4. The variable GNi is transformed to numeric. Only the columns **c("Country", "Edu2.F", "Edu2.M", "Edu.Mean", "Life.Exp", "GNI_num", "FRHI", "GII")** are selected for further work. 
+
+5. The rows with missing values are removed. The last 7 observations relate to regions instead of countries. Therefore they are removed. 
+
+6. Finally the country names are added as rownames and the corresponding ciolumn is removed from data frame. 
+
+The transformed data involve 155 observations of 7 variables. 
+
+
+
+
+
+
+
+
+
+##6.3.Graphical overview of the data and summaries of the variables 
+
+Here I use **human** data from the United Nations Development Programme, which are originally published [here](http://hdr.undp.org/en/content/human-development-index-hdi). The data concern so called human development index (HDI) as a criteria for the development of a country. HDI is a summary measure of three main groups of variables about long and healthy life, being knowledgeable and have a decent standard of living.
+Original data include 195 observations of 19 variables. The meaning of all variables is described [here](https://raw.githubusercontent.com/TuomoNieminen/Helsinki-Open-Data-Science/master/datasets/human_meta.txt). 
+
+In this work we use only variables, needed for calculation of the human development index (HDI), and gender inequality index (GII). We join both grou
+
+
+The wrangling includes the following changes: 
+
+1. Two new columns are added to "Gender inequality" data: the ratio of Female and Male populations with secondary education in each country. (i.e. edu2F / edu2M), and the second one - the ratio of labour force participation of females and males in each country (i.e. labF / labM). 
+
+2. Next "Gender inequality" and "Human development" datas are joined using the variable Country as the identifier. 
+
+3. The variable GNi is transformed to numeric. Only the columns c("Country", "Edu2.FM", "Labo.FM", "Edu.Exp", "Life.Exp", "GNI", "Mat.Mor", "Ado.Birth", "Parli.F") are selected for further work. 
+
+4. The rows with missing values are removed. The last 10 observations relate to regions instead of countries. Therefore they are removed. 
+
+5. Finally the country names are added as rownames and the corresponding ciolumn is removed from data frame. 
+
+The transformed data involve 155 observations of 8 variables. 
+
+##5.2.Graphical overview of the data and summaries of the variables 
+
+
+
+
+
+
 ##Link to to the GitHub page, related to my work on this assignment:
 
-https://noykova.github.io/IODSFinalAssignment/
+
+https://github.com/noykova/IODSFinalAssignment
+
 

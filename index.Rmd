@@ -1,5 +1,7 @@
 ---
 author: "Neli Noykova"
+date: "08.03.2017"
+e-mail address: "nnoykova'at'yahoo.com"
 title: "IODS course project: final assignment"
 output:
   html_document:
