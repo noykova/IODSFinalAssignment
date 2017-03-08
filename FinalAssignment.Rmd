@@ -52,7 +52,7 @@ The wrangling includes the following changes:
 
 8. Finally we sellect the columns for future work: **c("Life.I", "Edu2.FM", "EduI", "IncomeI", "GII", "Mat.Mor", "Ado.Birth")**.  
 
-The data wringling file is published [here](https://github.com/noykova/IODSFinalAssignment/blob/master/wrangle_human.R ). 
+**THE DATA WRINGLING FILR IS PUBLISHED [HERE](https://github.com/noykova/IODSFinalAssignment/blob/master/wrangle_human.R )**. 
 
 ##6.3.Graphical overview of the data and summaries of the variables 
 
