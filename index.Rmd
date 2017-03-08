@@ -14,7 +14,6 @@ output:
     code_folding: hide
 ---
 
-This is a first version of this project
 
 ***
   

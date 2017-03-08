@@ -7,20 +7,52 @@
 # e-mail: nnoykova'at'yahoo.com
 # Date: 07.03.2017
 
-#Summary of changes comparing data wringling for Week 5:
+#SUMMARY OF THE CHANGES COMPARING DATA WRINGLING FOR WEEK 5:
+
 #1. Labour Force Participation Rate for both male and female 
 #are not included in the analysis for this assignment
-#2. Populations with secondary education are taken separately for
-# male and females, as it was in the original data
-#3. The average of (Math.Mor + Ado.birth)/2 = FRHI is 
-#taken instead of individual columns Math.Mor and Ado.birth. 
-#4. Edu.mean is taken instead edu.exp. 
 
-# I would like to add more variables (for example related to Gender Development Index) 
+#2 (it is the same as before): Since the goal includes investigating the influence of gender inequality
+# the populations with secondary education are taken as before: 
+# only the ratio between female and male with secondary education is taken. 
+
+#3. In accordance with the original article explainin HDI, 
+#all data are rescaled between 0 and 1. They are not standardized, 
+# which will not affect the outcome of linear regression. 
+
+#3.1 In the original paper: Health index Health.I = ("Life.Exp" -20)/(85 -20) = ("Life.Exp" -20)/65
+# Here we use standard normalozation formula Health.i = (x - min(x))/(max(x) -min(x))
+# The reason: After checking both distribution I conclude that is more correct not to loose 
+# informatoin by truncating minimum or maximum values. 
+
+#3.2 Education Index EduI is obtained as simple arithmetic average of
+# Edu.MeanI and Edu.ExpI are normalized using sdandard formula for Edu.Mean and Edu.Exp
+# EduI = (Edu.MeanI + Edu.ExpI) / 2
+
+#3.3 For the normalization of IncomeI in the original paper logarithmic function 
+#(natural logarithm) is used in order to truncate too large 
+#incomes. 
+#Here we normalize this variable using standard normalization formula 
+#IncomeI = (GNI - min(GNi))/(max(GNI) - min(GNI)). We make this choice 
+#because we do not want to loose informations as it happen during truncating. 
+
+#3.4 For normalization of other columns ("Mat.Mor", "Ado.Birth" and "Edu2.FM")
+#the following common formula is used:
+#xnor = (x -min(x))/(max(x) - min(x))
+
+#3.5 Since we are interested in 
+#the influence of the gender inefuality, we transform the variable
+# Edu2.FM as factorial. 
+#When the ratio (edu2.F/edu2.M >= 0.5), we assign to it "F", 
+# otherwise - level "M".
+
+# NOTE: I would like to add more variables 
+#(for example related to Gender Development Index) 
 # and investigate them, but I have noticed 
-# that on the original publishing site it is almost impossible for me to do it. 
-# All other data are with different dimensions, for different years, etc. 
-# I would need more information, butr the time is very limited. 
+# that it is almost impossible for me to do it from the site 
+# where the data are published. 
+# All other data are in different dimensions, for different years, etc. 
+# I would need more information, but the time is very limited. 
 
 #This analysis ends up with 155 observations of 7 vaiables. 
 
@@ -78,12 +110,11 @@ colnames(gii)[10] <- "labM"
 colnames(gii)
 
 
-# HERE WE DO NOT MUTATE GII DATA 
-#AND DO NOT ADD VAIABLES edu2.FM AND labo.FM.
-#INSTEAD WE FORM FRHI = (Mat.Mor + Ado.Birth)/2
-#HRHI = Female reproductive health index
+#HERE DO NOT ADD THE VAIABLE labo.FM
 
-gii <- mutate(gii, FRHI = (Mat.Mor + Ado.Birth)/2)
+#take only the female/mail proportion of peiople with secondary education.
+gii <- mutate(gii, Edu2.FM = Edu2.F / Edu2.M)
+
 
 
 glimpse(gii)
@@ -118,7 +149,7 @@ colnames(hd_gii)
 # "Country", "Edu2.F", "Edu2.M", "Edu.Mean", "Life.Exp", "GNI_num", "FRHI", "GII"
 
 # columns to keep
-keep <- c("Country", "Edu2.F", "Edu2.M", "Edu.Mean", "Life.Exp", "GNI_num", "FRHI", "GII")
+keep <- c("Country", "Edu2.FM", "Edu.Mean", "Edu.Exp", "Life.Exp", "GNI_num", "Mat.Mor", "Ado.Birth", "GII")
 
 # select the 'keep' columns
 human <- select(hd_gii, one_of(keep))
@@ -134,6 +165,7 @@ complete.cases(human)
 
 # print out the data along with a completeness indicator as the last column
 data.frame(human[-1], comp = complete.cases(human))
+
 
 # filter out all rows with NA values
 human_ <- filter(human, complete.cases(human)==TRUE)
@@ -163,12 +195,60 @@ rownames(humann) <- humann$Country
 # remove the Country variable
 human <- select(humann, -Country)
 str(human)
-#THE TRANSFORMED DATA INVOLVES 155 OBSERVATIONS OF 7 VARIABLES. 
+
+#FROM HERE BELLOW ALL VARIABLES ARE RESCALED, WHICH IS DIFFERENT 
+#THAN IN PREVIOUS DATA WRINGLING EXERCISE 5. 
+
+#rescaling all variables between 0 and 1 according the original article about HDI
+#add new column Health.I = (Life.Exp -20)/65
+human <- mutate(human, Life.I = (Life.Exp -min(Life.Exp))/(max(Life.Exp)-min(Life.Exp)))
+
+#add new column Edu.MeanI = Edu.Mean/15
+human <- mutate(human, Edu.MeanI = (Edu.Mean - min(Edu.Mean))/(max(Edu.Mean)- min(Edu.Mean)))
+
+#add new column Edu.ExpI = Edu.Exp/18
+human <- mutate(human, Edu.ExpI = (Edu.Exp - min(Edu.Exp))/(max(Edu.Exp)- min(Edu.Exp)))
+
+#add new column EduI = (Edu.MeanI + Edu.ExpI)/2
+human <- mutate(human, EduI = (Edu.MeanI + Edu.ExpI)/2)
+
+#add new column IncomeI = (log(GNI) -log(100))/(log(75000) - log(100))
+#human <- mutate(human, IncomeI = (log(GNI) -log(100))/(log(75000) - log(100)))
+human <- mutate(human, IncomeI = (GNI -min(GNI))/(max(GNI) - min(GNI)))
+
+#and finally columns "Mat.Mor" and "Ado.Birth" are rescaled using their minimum 
+# and maximum values
+
+human$Mat.Mor <- (human$Mat.Mor - min(human$Mat.Mor)) / (max(human$Mat.Mor) - min(human$Mat.Mor))
+human$Ado.Birth <- (human$Ado.Birth - min(human$Ado.Birth)) / (max(human$Ado.Birth) - min(human$Ado.Birth))
+human$Edu2.FM <- (human$Edu2.FM - min(human$Edu2.FM)) / (max(human$Edu2.FM) - min(human$Edu2.FM))
+human$Edu2.FM
+
+human$Edu2.FM <- round(human$Edu2.FM, digits = 0)
+human$Edu2.FM <-as.factor(human$Edu2.FM)
+
+
+levels(human$Edu2.FM) <- c("M","F")
+
+human$Edu2.FM
+
+
+
+
+#select only rescaled columns
+# columns to keep
+keep <- c("Edu2.FM", "Life.I",  "EduI", "IncomeI", "GII", "Mat.Mor", "Ado.Birth")
+
+# select the 'keep' columns
+human <- select(human, one_of(keep))
+dim(human)
+summary(human)
+
 
 #Save the human data in the project data folder including the row names
 # export data as *txt file. 
-write.table(human, file="human1.txt", quote=F)
+write.table(human, file="human.txt", quote=F)
 # export data as *csv file.
-write.csv(human, file = "human1.csv")
+write.csv(human, file = "human.csv")
 
 
