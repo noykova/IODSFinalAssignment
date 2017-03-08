@@ -143,11 +143,11 @@ $(document).ready(function () {
 <ul>
 <li><a href="#long-healthy-life-and-good-education-as-measures-for-human-development-of-given-country-linear-regression-modeling-approach.">Long healthy life and good education as measures for human development of given country: linear regression modeling approach.</a><ul>
 <li><a href="#abstract">Abstract</a></li>
-<li><a href="#introduction">Introduction</a></li>
+<li><a href="#introduction">6.1 Introduction</a></li>
 <li><a href="#the-data">6.2.The data</a></li>
 <li><a href="#graphical-overview-of-the-data-and-summaries-of-the-variables">6.3.Graphical overview of the data and summaries of the variables</a></li>
 <li><a href="#multiple-linear-regression-results-and-interpretation">6.3.Multiple linear Regression: results and interpretation</a></li>
-<li><a href="#analises-and-conclusions">Analises and conclusions</a></li>
+<li><a href="#analyses-and-conclusions">Analyses and conclusions</a></li>
 <li><a href="#link-to-to-the-github-page-related-to-my-work-on-this-assignment">Link to to the GitHub page, related to my work on this assignment:</a></li>
 </ul></li>
 </ul>
@@ -161,7 +161,7 @@ $(document).ready(function () {
 <p>We have investigated two multivariate models for <strong>human</strong> data, concerning different measures about assessing development of a country. The models are created under the assumption that economic growth is not measured only by the gross national income. In the first model we have investigated the long healthy life as output variable depending on education, income and mother mortality. The model analysis shows that the choice of dependent variables is correct and the model is a good approximation to the observed data. In the second model we investigate the possibility to obtain good education as output model variable, depending on life expectancy, gender inequality index and income. Surpisingly in this case the model show that income is not so significant variable and the output results do not become worst if we exclude it from the depending variables. We also have analysed the pairwise correlation plots and observe how the results are separated between proportion of female and male who have obtained secondary education.</p>
 </div>
 <div id="introduction" class="section level2">
-<h2>Introduction</h2>
+<h2>6.1 Introduction</h2>
 <p>In our commercial world when unfortunately earning money becomes not just the main goal, but also meaning of more and more people’s life’s, it is natural to assume the economical growth as only measure of the development of a country. In order to avoid such misunderstanding, the Human Development Index (HDI) was created under the United Nations Development Programme. In this summary measure three main components are measured and involved: long and healthy life, access to knowledge, and only as a third componet - the gross national income as a measure for decent standard of living. The income is involved as a logarithmic function since too high income does not affect much the human development capabilities.</p>
 <p>The main goal of this work is to investigate using linear regression models how the long and healthy life depends on education and gross income related variables. In order to justify the results some variables related to gender inequality are added. The gender inequality can lead to potential loss of human development due to inequality between the achievments of male and female. we also investigate how the education as output variable in linear regression depends on the other two groups of variables.</p>
 </div>
@@ -187,7 +187,7 @@ $(document).ready(function () {
 <ol start="8" style="list-style-type: decimal">
 <li>Finally we sellect the columns for future work: <strong>c(“Life.I”, “Edu2.FM”, “EduI”, “IncomeI”, “GII”, “Mat.Mor”, “Ado.Birth”)</strong>.</li>
 </ol>
-<p><strong>THE DATA WRINGLING FILR IS PUBLISHED <a href="https://github.com/noykova/IODSFinalAssignment/blob/master/wrangle_human.R">HERE</a></strong>.</p>
+<p><strong>THE DATA WRINGLING FILE IS PUBLISHED <a href="https://github.com/noykova/IODSFinalAssignment/blob/master/wrangle_human.R">HERE</a></strong>.</p>
 </div>
 <div id="graphical-overview-of-the-data-and-summaries-of-the-variables" class="section level2">
 <h2>6.3.Graphical overview of the data and summaries of the variables</h2>
@@ -368,8 +368,8 @@ plot(my_model2)</code></pre>
 <p>Residuals versus leverage plot helps us to find influential cases (i.e., subjects) if any. Here as outliers are shown observations for countries with labels 88, 125 and 140.</p>
 </div>
 </div>
-<div id="analises-and-conclusions" class="section level2">
-<h2>Analises and conclusions</h2>
+<div id="analyses-and-conclusions" class="section level2">
+<h2>Analyses and conclusions</h2>
 <p>We have investigated two multivariate models for <strong>human</strong> data, concerning different measures about assessing development of a country. The models are created under the assumption that people and their capabilities (measures as possibility to obtain good knowledge and education and long and healthy life) are added to the economic growth.</p>
 <p>Before multivariable linear regression modeling we analyse the pairwise correlation plots and observe how the results are separated between variables according the factorial variable concerning proportion of female and male who have obtained secondary education. The pairwise plots show that clearly there are differences between genders in all cases. The female population who obtained secondary education is more then two time bigger that the one concerning male who obtained secondary education. The women show higher mean of education variable, and tend to have higher life expectancy. They also have bigger contribution to the gross national income. Male population, on the other hand, do not show very high mean income values, but on the other hand very small ammount of male population have highes income values.</p>
 <p>In first model we have investigated the dependence of long and healthy life as an output variable, depending on education, income and mother mortality. The model analysis show that the choice of dependent variables is correct and the model is a good approximation to the observed data.</p>

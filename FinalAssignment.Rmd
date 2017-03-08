@@ -8,7 +8,7 @@ In the first model we have investigated the long healthy life as output variable
 In the second model we investigate the possibility to obtain good education as output model variable, depending on life expectancy, gender inequality index and income. Surpisingly in this case the model show that income is not so significant variable and the output results do not become worst if we exclude it from the depending variables. 
 We also have analysed the pairwise correlation plots and observe how the results are separated between proportion of female and male who have obtained secondary education.
 
-## Introduction
+##6.1 Introduction
 
 In our commercial world when unfortunately earning money becomes not just the main goal, but also meaning of more and more people's life's, it is natural to assume the economical growth as only measure of the development of a country. In order to avoid such misunderstanding, the Human Development Index (HDI) was created under the United Nations Development Programme. 
 In this summary measure three main components are measured and involved: long and healthy life, access to knowledge, and only as a third componet - the gross national income as a measure for decent standard of living. The income is involved as a logarithmic function since too high income does not affect much the human development capabilities.  
@@ -52,7 +52,7 @@ The wrangling includes the following changes:
 
 8. Finally we sellect the columns for future work: **c("Life.I", "Edu2.FM", "EduI", "IncomeI", "GII", "Mat.Mor", "Ado.Birth")**.  
 
-**THE DATA WRINGLING FILR IS PUBLISHED [HERE](https://github.com/noykova/IODSFinalAssignment/blob/master/wrangle_human.R )**. 
+**THE DATA WRINGLING FILE IS PUBLISHED [HERE](https://github.com/noykova/IODSFinalAssignment/blob/master/wrangle_human.R )**. 
 
 ##6.3.Graphical overview of the data and summaries of the variables 
 
@@ -176,7 +176,7 @@ The last residuals versus leverage plot suggests as outliers the observations fo
 
 Residuals versus leverage plot helps us to find influential cases (i.e., subjects) if any. Here as outliers are shown observations for countries with labels 88, 125 and 140.  
 
-## Analises and conclusions
+## Analyses and conclusions
 
 We have investigated two multivariate models for **human** data, concerning different measures about assessing development of a country. The models are created under the assumption that people and their capabilities (measures as possibility to obtain good knowledge and education and long and healthy life) are added to the economic growth. 
 
